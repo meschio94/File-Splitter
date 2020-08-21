@@ -1,0 +1,212 @@
+package stream.input;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import gui.progress.ColumnProgress;
+import logic.FileElement;
+import logic.header.FSHeadingReader;
+import stream.StreamCore;
+
+/**
+ * Abstract class which extends the generic {@link #StreamCore}. Used for write
+ * with {@link #writeParts} and for read the header file. Update the
+ * {@link #successfulFlag} if some error occur
+ *
+ * @author Meschio
+ *
+ */
+public abstract class InputCore extends StreamCore {
+
+	protected FSHeadingReader headerInfo;
+
+	/**
+	 * Constructor of InputCore, call the parent constructor
+	 * {@link #StreamCore}, set the {@link #fileProgress} and read the headerFile.
+	 *
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
+	 */
+	public InputCore(String srcPath, FileElement data) throws IOException {
+		super(srcPath, data);
+
+		this.headerInfo = new FSHeadingReader(data);
+		if (headerInfo.isSuccessful() == false) {
+			setFlagFalse();
+		}
+
+		this.fileProgress = new ColumnProgress(data.getProgressProperty(), getTotalBytesToWrite());
+
+	}
+
+	/******************************************************/
+	/**************** | ABSTRACT METHOD | *****************/
+	/******************************************************/
+
+	/**
+	 * Method used by {@link #writeParts} for get the OutputStream, specialized
+	 * in the inherited class
+	 *
+	 * @return the OutputStream
+	 */
+	protected abstract OutputStream getOutputStream();
+
+	/**
+	 * Method used by {@link #writeParts} for set the OutputStream, specialized
+	 * in the inherited class
+	 *
+	 * @param srcPathOut
+	 * @param fileName
+	 * @param index
+	 * @throws FileNotFoundException
+	 */
+	protected abstract void setOutputStream(String srcPathOut) throws FileNotFoundException;
+
+	/**
+	 * Method used by {@link #writeParts} for set the start cycle write
+	 * operation
+	 *
+	 * @param partIndex, index of the cycle
+	 * @throws IOException
+	 */
+	protected abstract void handleMethodStartOperation(int partIndex) throws IOException;
+
+	/**
+	 * Method usedby {@link #writeParts} for set the final cycle write operation
+	 *
+	 * @param partIndex, index of the cycle
+	 * @throws IOException
+	 */
+	protected abstract void handleMethodEndOperation() throws IOException;
+
+	/******************************************************/
+	/****************** | GET METHODs | *******************/
+	/******************************************************/
+
+	/**
+	 * get method specialized of file lenght
+	 *
+	 * @return file lenght long value
+	 */
+	public long getTotalFileLenght() {
+		long fileLenght = ((handleNrOfParts() * handleBytesPerParts()) + handleBytesFinalPart());
+		return fileLenght;
+	}
+
+	/**
+	 * Specialized method for inputCore for returning the total bytes to write
+	 *
+	 * @return lenght of the file
+	 */
+	public long getTotalBytesToWrite() {
+		return getTotalFileLenght();
+	}
+
+	/**
+	 * Specialized method for inputCore for returning the Nr Of Parts from the
+	 * header
+	 *
+	 * @return NrOfParts
+	 */
+	public long handleNrOfParts() {
+		return headerInfo.getNrOfParts();
+	}
+
+	/**
+	 * Specialized method for inputCore for returning the Bytes Per Parts from
+	 * the header
+	 *
+	 * @return BytesPerPart
+	 */
+	public long handleBytesPerParts() {
+		return headerInfo.getBytesPerPart();
+	}
+
+	/**
+	 * Specialized method for inputCore for returning the Bytes Last Part from
+	 * the header
+	 *
+	 * @return BytesLastPart
+	 */
+	public long handleBytesFinalPart() {
+		return headerInfo.getBytesLastPart();
+	}
+
+	/******************************************************/
+	/*************** | OPERATION METHODs | ****************/
+	/******************************************************/
+
+	/**
+	 * Method for close the current stream and open the next part
+	 *
+	 * @param index of part
+	 * @throws IOException
+	 */
+	public void openNextFile(int index) throws IOException {
+		stream.close(); // close the header file
+
+		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
+		file = new File(nextFile); // open the part 1
+
+		if ((nextFile == null) || (file.exists() == false)) {
+			setFlagFalse();
+
+		} else {
+			stream = new FileInputStream(file);// open a new stream
+		}
+
+	}
+
+	/**
+	 * writeParts specialized class of {@link #InputCore} for chop a file with every part of it.<p>
+	 *
+	 * Update the {@link #data} status of the operation for the
+	 * TableView set the {@link #successfulFlag} to false if some error occur.
+	 * rely of the set {@link #setOutputStream} and get {@link #getOutputStream}
+	 * specialized in the inherited class, and rely to
+	 * {@link #handleMethodStartOperation} and {@link #handleMethodEndOperation}
+	 * for cycle operations specialized in the inherited class
+	 */
+	public void writeParts() throws Exception {
+
+		long nrOfParts = handleNrOfParts();
+		setOutputStream(srcPathOut); // set the output Stream
+		OutputStream outputStream = getOutputStream(); // get the outputstream
+
+		for (int i = 1; i <= nrOfParts; i++) {
+
+			openNextFile(i);
+
+			if (isSuccessful() == true) {// flag control operation
+				handleMethodStartOperation(i);
+				super.buffer(outputStream);
+				handleMethodEndOperation();
+			}
+		}
+
+		if (isSuccessful() == true) {// flag control operation
+			long bytesLastPart = handleBytesFinalPart();
+			if (bytesLastPart > 0) {
+
+				openNextFile((int) handleNrOfParts() + 1);
+
+				if (isSuccessful() == true) {
+					handleMethodStartOperation((int) handleNrOfParts() + 1);
+					writeBytes(outputStream, bytesLastPart);
+					handleMethodEndOperation();
+				}
+			}
+		}
+
+		stream.close();
+		getOutputStream().close();
+
+
+	}
+
+
+}
