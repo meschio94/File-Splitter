@@ -364,45 +364,4 @@ public class FSMainController extends Controller implements Initializable {
 
 	}
 
-	// ******************************************
-	// ***************** DEBUG CODE ************
-	// ******************************************
-
-	@FXML
-	private Button TempDebugPrint;
-
-	@FXML
-	private static final TextArea textArea = new TextArea();
-
-	private int first = 0;
-	private int last = 0;
-
-	public int getFirst() {
-		return first;
-	}
-
-	public int getLast() {
-		return last;
-	}
-
-	@FXML
-	private void printConsoleList(ActionEvent event) {
-		M_Table.refresh();
-
-		System.out.println("inizio");
-		System.out.println("--------------");
-		for (FileElement each : list.getList())// ciclo ObservableList
-		// for (FileElement each: masterList.getItems())//ciclo ListVIew
-
-		{
-			System.out.println("filename: " + each.getFileName() + " | file source path :" + each.getSourcePath());
-
-			System.out.println(each.getFileName().toString());
-			System.out.println("password :" + each.getPassword());
-		}
-		System.out.println("--------------");
-		System.out.println("fine");
-		System.out.println("    ");
-	}
-
 }
