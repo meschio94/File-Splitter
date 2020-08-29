@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="." destdir="doc" doctitle="FileSplitter Documentation" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="stream.output,conccurent,gui.logic,gui.controller,stream,stream.input,application,gui.progress,jobStarter.output,job.input,logic,logic.header,conccurent.refresh,error,gui.fxml,jobStarter,jobStarter.input,job.output" source="1.8" sourcepath="src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>
