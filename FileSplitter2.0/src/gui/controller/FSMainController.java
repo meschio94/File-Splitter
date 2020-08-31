@@ -265,9 +265,11 @@ public class FSMainController extends Controller implements Initializable {
 			M_Table.setItems(list.getList());
 
 			if (list.getModeSplit() == false) {
+				M_LabelMode.setText("Chop Mode");
 				InformationColumn.setVisible(false);// disable information
 													// column
 			} else {
+				M_LabelMode.setText("Split Mode");
 				InformationColumn.setVisible(true);// renable information column
 			}
 		}

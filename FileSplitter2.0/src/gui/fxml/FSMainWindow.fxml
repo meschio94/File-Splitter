@@ -77,14 +77,17 @@
          </FXCollections>
       </items>
     </ChoiceBox>
-      <Button fx:id="M_BtStart" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleStartQueueSplit" prefHeight="36.0" prefWidth="163.0" text="Start queue split" />
+      <Button fx:id="M_BtStart" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleStartQueueSplit" prefHeight="36.0" prefWidth="163.0" text="Start Processing" />
       <TextField fx:id="M_InputPassword" alignment="CENTER" layoutX="28.0" layoutY="238.0" prefHeight="25.0" prefWidth="163.0" />
       <Label fx:id="M_LabelPassword" alignment="TOP_CENTER" layoutX="28.0" layoutY="207.0" prefHeight="23.0" prefWidth="163.0" text="Password:">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="M_LabelMode" alignment="CENTER" layoutX="28.0" layoutY="286.0" prefHeight="25.0" prefWidth="163.0" text="Work Split mode" />
+      <Label fx:id="M_LabelMode" alignment="CENTER" layoutX="28.0" layoutY="286.0" prefHeight="25.0" prefWidth="163.0" text="Split Mode">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
       <ProgressBar fx:id="M_GlobalProgress" layoutX="27.0" layoutY="380.0" prefHeight="36.0" prefWidth="758.0" progress="0.0" />
   </children>
 </AnchorPane>
