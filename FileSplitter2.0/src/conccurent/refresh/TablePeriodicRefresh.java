@@ -55,7 +55,6 @@ public class TablePeriodicRefresh extends Task<Void> {
 
 				e.printStackTrace();
 			}
-			System.out.println("refresh");// aka
 			Platform.runLater(() -> table.refresh()
 
 			);
