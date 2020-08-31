@@ -347,21 +347,23 @@ public class FSMainController extends Controller implements Initializable {
 	@FXML
 	private void handleStartQueueSplit(ActionEvent event) throws Exception {
 
-		ProgressColumn.setVisible(true);
+		if (list.getListSize()!= 0){
 
-		 JobListSelector startJobs = new JobListSelector(directoryFolder, list.getList(), list.getModeSplit());
+			ProgressColumn.setVisible(true);
 
-		 GlobalProgress globalBarClass = new GlobalProgress(updateProgress, list);
+			JobListSelector startJobs = new JobListSelector(directoryFolder, list.getList(), list.getModeSplit());
 
-		TablePeriodicRefresh refreshTable = new TablePeriodicRefresh(M_Table, globalBarClass);
+			GlobalProgress globalBarClass = new GlobalProgress(updateProgress, list);
 
-		Thread tableThread = new Thread(refreshTable); // start the refresh
-														// Table thread
-		tableThread.setDaemon(true);
-		tableThread.start();
+			TablePeriodicRefresh refreshTable = new TablePeriodicRefresh(M_Table, globalBarClass);
 
-		startJobs.startProcessList(globalBarClass, nodesInterationLogic);// start to select the list
+			Thread tableThread = new Thread(refreshTable); // start the refresh
+															// Table thread
+			tableThread.setDaemon(true);
+			tableThread.start();
 
+			startJobs.startProcessList(globalBarClass, nodesInterationLogic);// start to select the list
+		}
 	}
 
 }
