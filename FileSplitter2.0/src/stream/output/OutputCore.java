@@ -33,7 +33,7 @@ public abstract class OutputCore extends StreamCore {
 		super(srcPath, data);
 		if (isSuccessful() == true) {// check if the previous operation was successful
 
-			createHeaderFile(data, getSrcPathOut());
+			createHeaderFile(data, srcPath);
 		}
 
 		this.fileProgress = new ColumnProgress(data.getProgressProperty(), getTotalBytesToWrite());
