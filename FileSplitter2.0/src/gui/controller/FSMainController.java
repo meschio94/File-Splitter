@@ -166,7 +166,7 @@ public class FSMainController extends Controller implements Initializable {
 
 
 	/**
-	 * Mode of the list, split or chop, INCOMPLETO
+	 * Mode of the list, split or chop
 	 */
 	@FXML
 	private Label M_LabelMode;
