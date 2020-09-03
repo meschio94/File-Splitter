@@ -64,7 +64,7 @@ public class InputDecompress extends InputCore{
 		if(isSuccessful()==true){//check all previous operation in stream core
 			writeParts();
 		} else {
-			data.setStatus("Error"); System.out.println("cambio stato error");//aka
+			data.setStatus("Error");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class InputDecompress extends InputCore{
 		}
 		zipStream.closeEntry();//close zipstream entry
 		zipStream.close();//close the zipstream
-		
+
 		return fileExtractedStream.toByteArray();
 	}
 

@@ -20,37 +20,37 @@ import javax.crypto.spec.SecretKeySpec;
  *
  */
 public class FSPasswordHash {
-	
+
 	/**
 	 * The password used for generate the {@link #chiper}
 	 */
 	private String password;
-	
+
 	/**
 	 * The <Chiper> for crypt/decrypt the file
 	 */
 	private Cipher cipher;
-	
+
 	/**
 	 * The default password used if the {@link #password} is null or empty
 	 */
 	private String defaultPassword = "x*RCe3iWt!doW8";
-	
+
 	/**
 	 * The salt useb for the password
 	 */
 	private byte[] salt;
-	
+
 	/**
 	 * IvParameterSpec for the initialization of the {@link #chiper}
 	 */
 	private IvParameterSpec ivParam;
-	
+
 	/**
 	 * Secret key generated with AES
 	 */
 	private SecretKey aesKey;
-	
+
 	/**
 	 * Constructor of the class, take in input a password for generate a {@link #chiper}
 	 * @param inputPassword
@@ -59,13 +59,11 @@ public class FSPasswordHash {
 	 * @throws InvalidKeySpecException
 	 */
 	public FSPasswordHash(String inputPassword) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException{
-		System.out.println("inpuTpassword usata: " + inputPassword);//aka
 		if ((inputPassword == null) || (inputPassword == "")){
 			this.password = defaultPassword;
 		} else {
 			this.password = inputPassword;
 		}
-		System.out.println("password usata: " + password);//aka
 		this.salt = makeSalt(password);
 		this.cipher = makeCipher(salt);
 

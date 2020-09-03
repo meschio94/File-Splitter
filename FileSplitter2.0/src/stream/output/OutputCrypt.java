@@ -112,9 +112,7 @@ public class OutputCrypt extends OutputCore{
 	 */
 	protected void handleMethodStartOperation(int partIndex){
 
-		System.out.println("method start operation 1");//aka
-
-			try {
+		try {
 				crypt = new FSPasswordHash(this.password);
 			} catch (Exception e) {
 				e.printStackTrace();

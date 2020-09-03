@@ -128,8 +128,7 @@ public class FSPasswordInputController extends Controller{
     void okButton(ActionEvent event){
     	password = P_InputPassword.getText();
     	if (( password != "") || ( password != null)){
-    		System.out.println("branca password inserted" );//aka
-	    	passwordInserted = true;
+    		passwordInserted = true;
 	    	P_OkBt.getScene().getWindow().hide();
     	}
     }

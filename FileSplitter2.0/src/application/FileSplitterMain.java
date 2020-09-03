@@ -63,7 +63,6 @@ public class FileSplitterMain extends Application{
   public String createOuputPath(){
 	  String d = System.getProperty("user.home");
 	  String dir = d + File.separator+ "documents" +File.separator + "FSfolder";
-	  System.out.println("directory root : "+ dir);//aka
 	  File outFolder = new  File(dir);
 	  outFolder.mkdirs();
 	  return dir;

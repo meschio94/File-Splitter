@@ -54,11 +54,11 @@ public class OutputSplit extends OutputCore{
 	 * @throws IOException
 	 */
 	public void splitFile() throws Exception {
-		System.out.println("check status split pre writeparts : " + isSuccessful());//aka
+
 		if(isSuccessful()==true){//check all previous operation in stream core
 			writeParts();
 		} else {
-			data.setStatus("Error"); System.out.println("cambio stato error");//aka
+			data.setStatus("Error");
 		}
 
 	}

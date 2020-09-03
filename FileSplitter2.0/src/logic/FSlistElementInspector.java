@@ -125,7 +125,6 @@ public class FSlistElementInspector {
 		if (location == null){ return false; }
 
 		boolean headerCheck = new File(location).exists();
-		System.out.println("header location " + location );//aka
 		if (headerCheck == true){
 			return true;
 		}

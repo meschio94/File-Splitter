@@ -135,8 +135,7 @@ public abstract class OutputCore extends StreamCore {
 			return (handleBytesPerParts() + (getFileLenght() % (handleNrOfParts()))); // Sum the bytes of the parts and the reminder of the division
 		}
 		if (handleNrOfParts() > 0) {
-			System.out.println(
-					"handleBytesFinalPart " + (getFileLenght() - (handleBytesPerParts() * (handleNrOfParts())))); // aka
+
 			return (getFileLenght() - (handleBytesPerParts() * (handleNrOfParts())));
 		}
 		if (handleNrOfParts() == 0) { // case the file is composed of only 1
@@ -186,9 +185,6 @@ public abstract class OutputCore extends StreamCore {
 	 * for cycle operations specialized in the inherited class
 	 */
 	public void writeParts() throws Exception {
-		System.out.println("nr parti : " + handleNrOfParts());// aka
-		System.out.println("Byte prima parte :  " + handleBytesPerParts());// aka
-		System.out.println("Byte parte finale" + handleBytesFinalPart());// aka
 
 		long nrOfParts = handleNrOfParts();
 		for (int i = 1; i <= nrOfParts; i++) {

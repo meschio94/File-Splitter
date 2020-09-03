@@ -181,14 +181,10 @@ public class FSlistFileElement {
 
 
 		    	if( headerInfo.isSuccessful() == true){//check the successful flag of headerReader
-		    		System.out.println("file changed to " + data.getFileName() + " and added to the queue");//aka
 
 		    		if(modeSplit == true){ list.clear();} //clear the queue if the mode is split
 		    		modeSplit = false; //set the new mode
 			    	extensionSp = true; //set the new sp extension flag
-
-
-			    	System.out.println("immaganizzo temp " );//aka
 
 			    	result = 1;}
 		    	else{
@@ -198,9 +194,6 @@ public class FSlistFileElement {
 			}
 		}
 
-
-
-		printBoolean(modeSplit, extension, extensionSp);//aka
 		return result;
 	}
 
@@ -309,9 +302,6 @@ public class FSlistFileElement {
 		FSHeadingReader headerInfo = new FSHeadingReader(data);
 
     	if( headerInfo.isSuccessful() == true){
-    		System.out.println("filename: " + data.getFileName() + " | file source path :" + data.getSourcePath() );
-
-
 
     		data.setPassword(headerInfo.getPasswordInfo());//set passwordInfo
         	data.setType(headerInfo.getType()); //set the new type
@@ -327,11 +317,5 @@ public class FSlistFileElement {
 		return list.size();
 	}
 
-	/****DEBUG******/
 
-	private void printBoolean(boolean mode, boolean extension, boolean controlExtension){
-		System.out.println("----------------------------------------------------------------------");
-		System.out.println("extension -> " + extension + " | " + mode + " <- mode" + "----- " + controlExtension + " <- control extension");
-		System.out.println("----------------------------------------------------------------------");
-	}
 }

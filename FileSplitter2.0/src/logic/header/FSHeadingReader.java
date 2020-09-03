@@ -259,9 +259,6 @@ public class FSHeadingReader {
 
 		String location = data.getSourcePathFolder() + File.separator + namePure + "." + index + ".sp";
 
-		System.out.println("path next part file " + location );//aka
-
-
 		return location;
 	}
 

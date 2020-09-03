@@ -92,9 +92,6 @@ public class JobInDecrypt implements JobInInterface{
 
 
 
- /*NUOVA* COMMENTARE*/
-
-
 	/**
 	 * call the PasswordInput window popup for input the custom password the user set during the crypt fase
 	 * @param lock CountDownLatch to unlock for continue the thread job
@@ -165,8 +162,6 @@ public class JobInDecrypt implements JobInInterface{
 		int hashInt = crypt.getHashCode();
 		String hashTempCode = String.valueOf(hashInt);
 
-		System.out.println("Hash Code original : " + hashCode);
-		System.out.println("Hash Code new password : " + hashTempCode);
 		if(hashCode.equals(hashTempCode) == true){
 			return true;
 		} else {

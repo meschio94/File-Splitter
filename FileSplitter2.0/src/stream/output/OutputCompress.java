@@ -70,7 +70,7 @@ public class OutputCompress extends OutputCore{
 			writeParts();
 			getZipOutputStream().close();
 		} else {
-			data.setStatus("Error"); System.out.println("cambio stato error");//aka
+			data.setStatus("Error");
 		}
 	}
 
