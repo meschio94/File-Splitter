@@ -1,5 +1,7 @@
 package jobStarter;
 
+import java.util.ArrayList;
+
 import conccurent.JobTask;
 import conccurent.refresh.GlobalProgressRefresh;
 import javafx.collections.ObservableList;
@@ -68,31 +70,23 @@ public class JobListSelector {
 		}
 
 		int threadSize = 0;//nrOfProcessingThreads
-
+		
+		ArrayList<JobTask> jobList = new ArrayList<JobTask>();
+		
 		for (FileElement each: list) { //calculate the nr of threads
-			if((each.getStatus() != "Done") && (each.getStatus() != "Error")){
+			if((each.getStatus() == "Ready to start")){
+				JobTask jobTask = new JobTask(each,job);
+				jobList.add(jobTask);
 				threadSize++;
 			}
 
 		}
 
-		Thread taskThread[] = new Thread[threadSize];//array of threads for list elements
-
-		int i = 0;
-		for (FileElement each: list) {
-
-			if((each.getStatus() == "Ready to start")){//start the trhead task
-
-				JobTask jobTask = new JobTask(each,job);
-				taskThread[i] = new Thread(jobTask);
-				taskThread[i].setDaemon(true);
-			    taskThread[i].start();
-
-				i++;
-
-			}
-
+		for (int i = 0; i < threadSize; i++) {
+			Thread jobThread = new Thread(jobList.get(i));
+			jobThread.start();
 		}
+		
 
 		GlobalProgressRefresh globalRefresh = new GlobalProgressRefresh(list,updateProgress,nodesInterationLogic); //initialize the task
 		Thread globalRefreshThread = new Thread(globalRefresh);//start the globalBar task thread

@@ -228,6 +228,11 @@ public abstract class StreamCore {
 	 * @return Total Bytes to write for the element
 	 */
 	abstract public long getTotalBytesToWrite();
+	
+	/**
+	 * Method for create a custom output folder where the result of the manipulation will be put
+	 */
+	abstract protected String createFolderOutput(FileElement data, String srcPath) throws IOException;
 
 	/******************************************************/
 	/*************** | OPERATION METHODs | ****************/
@@ -260,37 +265,7 @@ public abstract class StreamCore {
 		}
 	}
 
-	/**
-	 * Method for create a custom output folder where the result of the manipulation will be put
-	 * @param data element
-	 * @param srcPath output path
-	 * @return path of the output file folder
-	 * @throws IOException
-	 */
-	protected String createFolderOutput(FileElement data, String srcPath) throws IOException {
 
-		String directoryName = srcPath + File.separator + data.getFileName() + " Splitted for " + data.getType();
-
-		try {
-			File directory = new File(directoryName);
-			if (directory.exists() == false) {
-				directory.mkdir();
-
-			} else if (directory.exists() == true) {
-
-				setFlagFalse();
-				Platform.runLater(() -> AlertMaker.showErrorMessage("File Directory Error",
-						"The directory of file: " + data.getFileName() + "  already exist"));
-			}
-		} catch (Exception e) {
-			Platform.runLater(() -> AlertMaker.showErrorMessage("Error Directory", "An error occured trying to open the source directory ")); // forse
-
-			directoryName = "";
-			setFlagFalse();
-			e.printStackTrace();
-		}
-		return directoryName;
-	}
 
 	/**
 	 * Buffer method for handle big size part to write in output, splitting in chunks

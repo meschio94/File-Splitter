@@ -36,7 +36,7 @@ public class JobTask extends Task<Void>{
 	 * Start to process the task, updating the relative status
 	 */
 	 @Override
-	    protected Void call() throws Exception{
+	   protected Void call() throws Exception{
 
 		 data.setStatus("Working...");
 

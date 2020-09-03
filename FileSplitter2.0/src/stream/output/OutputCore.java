@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import error.AlertMaker;
 import gui.progress.ColumnProgress;
+import javafx.application.Platform;
 import logic.FileElement;
 import logic.header.FSHeadingCreator;
 import stream.StreamCore;
@@ -152,7 +154,39 @@ public abstract class OutputCore extends StreamCore {
 	/******************************************************/
 	/*************** | OPERATION METHODs | ****************/
 	/******************************************************/
+	
+	/**
+	 * Method for create a custom output folder where the result of the manipulation will be put
+	 * @param data element
+	 * @param srcPath output path
+	 * @return path of the output file folder
+	 * @throws IOException
+	 */
+	protected String createFolderOutput(FileElement data, String srcPath) throws IOException {
 
+		String directoryName = srcPath + File.separator + data.getFileName() + " Splitted for " + data.getType();
+
+		try {
+			File directory = new File(directoryName);
+			if (directory.exists() == false) {
+				directory.mkdir();
+
+			} else if (directory.exists() == true) {
+
+				setFlagFalse();
+				Platform.runLater(() -> AlertMaker.showErrorMessage("File Directory Error",
+						"The directory of file: " + data.getFileName() + "  already exist"));
+			}
+		} catch (Exception e) {
+			Platform.runLater(() -> AlertMaker.showErrorMessage("Error Directory", "An error occured trying to open the source directory ")); // forse
+
+			directoryName = "";
+			setFlagFalse();
+			e.printStackTrace();
+		}
+		return directoryName;
+	}
+	
 	/**
 	 * Create the header file document with the element data
 	 *

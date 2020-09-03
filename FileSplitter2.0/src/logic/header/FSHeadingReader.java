@@ -283,7 +283,7 @@ public class FSHeadingReader {
 	 * @return the nr of parts
 	 */
 	public long getNrOfParts(){
-		return Long.valueOf(nrOfParts).longValue();
+		return Long.valueOf(nrOfParts);
 	}
 
 	/**
@@ -291,7 +291,7 @@ public class FSHeadingReader {
 	 * @return the bytes per part
 	 */
 	public long getBytesPerPart(){
-		return Long.valueOf(bytesPerPart).longValue();
+		return Long.valueOf(bytesPerPart);
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class FSHeadingReader {
 	 * @return the bytes of the last part
 	 */
 	public long getBytesLastPart(){
-		return Long.valueOf(bytesLastPart).longValue();
+		return Long.valueOf(bytesLastPart);
 	}
 
 	/**
