@@ -14,4 +14,12 @@ For the GUI i opted for javaFX, it was a bit hard because during the course we o
 
 ![alt text](https://i.imgur.com/Y3LdFvP.jpg)
 
-I opted for a minimalist GUI as you can see from the screenshoot
+I opted for a minimalist GUI as you can see from the screenshoot.
+<p>
+<p>
+
+Below you can see the project logic design i followed :<p>
+<p>
+
+
+<img src="FileSplitter2.0/project diagram.png">
