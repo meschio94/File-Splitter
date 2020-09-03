@@ -6,7 +6,7 @@ import logic.FileElement;
 import stream.output.OutputSplit;
 
 /**
- * Specialized class of {@link @JobOutInterface} for split an element via {@link @OutputSplit}
+ * Specialized class of {@link job.output.JobOutInterface} for split an element via {@link stream.output.OutputSplit}
  * @author Meschio
  *
  */
@@ -18,10 +18,10 @@ public class JobOutSplit implements JobOutInterface{
 	private OutputSplit job;
 
 	/**
-	 * Constructor of the class for initialize the {@link @OutputSplit}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * Constructor of the class for initialize the {@link stream.output.OutputSplit}
+	 * @param srcPath output path
+	 * @param data element
+	 * @throws Exception Exception
 	 */
 	public JobOutSplit(String srcPath, FileElement data) throws Exception {
 
@@ -31,6 +31,7 @@ public class JobOutSplit implements JobOutInterface{
 
 	/**
 	 * Method for start the split procedure
+	 * @return true if operation was successful
 	 */
 	public boolean startJob() throws Exception {
 		if(job.isSuccessful() == true){

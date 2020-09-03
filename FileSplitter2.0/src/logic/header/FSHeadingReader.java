@@ -70,8 +70,8 @@ public class FSHeadingReader {
 	/**
 	 * Constructor of FSHeadingReader
 	 * @param inputData the header file to read
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * @throws FileNotFoundException FileNotFoundException
+	 * @throws IOException IOException
 	 */
 	public FSHeadingReader(FileElement inputData) throws FileNotFoundException, IOException{
 

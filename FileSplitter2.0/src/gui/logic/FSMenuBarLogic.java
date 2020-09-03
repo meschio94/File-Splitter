@@ -19,8 +19,9 @@ import logic.FSlistFileElement;
 public class FSMenuBarLogic {
 
 	/**
-	 * Method to handle the clear queue command in the File Menu > Edit
-	 * @param event
+	 * Method to handle the clear queue command in the File Menu: Edit
+	 * @param event event
+	 * @param list list
 	 */
 	public void handleClearQueue(ActionEvent event, FSlistFileElement list){
 
@@ -36,8 +37,10 @@ public class FSMenuBarLogic {
 	}
 
 	/**
-	 * Method to handle the change Directory Folder output in the File Menu > File
-	 * @param event
+	 * Method to handle the change Directory Folder output in the File Menu: File
+	 * @param event event
+	 * @param directoryFolder older directory path
+	 * @return the new path location
 	 */
 	public String handleChangeDirectoryFolder(ActionEvent event, String directoryFolder){
 		String newDirectoryFolder = null;

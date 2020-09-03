@@ -13,7 +13,7 @@ import logic.FSPasswordHash;
 import logic.FileElement;
 
 /**
- * Class specialized for Decrypt and reconstruct a file via {@link #deryptFile}, extends the {@link #InputCore} class.
+ * Class specialized for Decrypt and reconstruct a file via {@link #decryptFile}, extends the {@link stream.input.InputCore} class.
  *	Reconstruct a file with all the encrypted parts
  * @author Meschio
  *
@@ -37,10 +37,10 @@ public class InputDecrypt extends InputCore{
 	private FSPasswordHash crypt;
 
 	/**
-	 * Constructor of InputCrypt, call the super constructor of {@link #InputCore},
-	 * @param srcPath
-	 * @param data
-	 * @throws IOException
+	 * Constructor of InputCrypt, call the super constructor of {@link stream.input.InputCore},
+	 * @param srcPath source output path
+	 * @param data element
+	 * @throws IOException IOException
 	 */
 	public InputDecrypt(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -66,7 +66,8 @@ public class InputDecrypt extends InputCore{
 	 * decryptFile Function for reconstruct the file from its crypted parts
 	 * Will perform the action only if {@link #successfulFlag} is set to true,
 	 * otherwise will update the {@link #data} status to "Error"
-	 * @throws IOException
+	 * @param password password of the element
+	 * @throws IOException IOException
 	 */
 	public void decryptFile(String password) throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core

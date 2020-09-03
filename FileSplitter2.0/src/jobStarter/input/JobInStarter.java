@@ -8,7 +8,7 @@ import jobStarter.JobStarterInterface;
 import logic.FileElement;
 
 /**
- * Class that implements {@link @JobStarterInterface} for input elements to the right type of job
+ * Class that implements {@link jobStarter.JobStarterInterface} for input elements to the right type of job
  * @author Meschio
  *
  */
@@ -27,7 +27,6 @@ public class JobInStarter implements JobStarterInterface{
 	/**
 	 * Constructor of the jobStarter Class
 	 * @param inputSrcPath String of the output directory
-	 * @param inputData the FileElement to process
 	 */
 	public JobInStarter (String inputSrcPath){
 
@@ -37,7 +36,7 @@ public class JobInStarter implements JobStarterInterface{
 	/**
 	 * Start a new job from the different type selected
 	 * @return true if the operation was successful, false otherwise
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public boolean selectJob(FileElement data) throws Exception{
 		switch(data.getType()){

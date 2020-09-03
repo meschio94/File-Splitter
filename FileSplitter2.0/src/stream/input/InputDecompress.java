@@ -16,7 +16,7 @@ import java.util.zip.ZipInputStream;
 import logic.FileElement;
 
 /**
- * Class specialized for decompress a file via {@link #decompressFile}, extends the {@link #InputCore} class.
+ * Class specialized for decompress a file via {@link #decompressFile}, extends the {@link stream.input.InputCore} class.
  *
  * @author Meschio
  *
@@ -30,10 +30,10 @@ public class InputDecompress extends InputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * Constructor of InputDecompress, just call the super constructor of {@link #InputCore}
-	 * @param srcPath
-	 * @param data
-	 * @throws IOException
+	 * Constructor of InputDecompress, just call the super constructor of {@link stream.input.InputCore}
+	 * @param srcPath source output path
+	 * @param data element
+	 * @throws IOException IOException
 	 */
 	public InputDecompress(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -58,7 +58,7 @@ public class InputDecompress extends InputCore{
 	/**
 	 * decompressFile Function for extract the Files parts in the outputStream
 	 *
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public void decompressFile() throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core
@@ -116,9 +116,9 @@ public class InputDecompress extends InputCore{
 
 	/**
 	 * Method for set the new inputStream where to read the file
-	 * @param stream
+	 * @param stream inputStream
 	 * @return new stream
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	private ByteArrayInputStream setNewStream(InputStream stream) throws IOException{
 		byte[] byteArray = extractInBufferInput(stream); //support byteArray, extract the array from the ByteArrayOutputStream

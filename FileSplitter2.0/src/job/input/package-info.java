@@ -1,7 +1,6 @@
 /**
- * This package is used by {@link jobStarter.Input.JobInStarter} for set the element to process via {@link stream.input} package
- */
-/**
+ * Intput branch of {@link job job} is used by {@link jobStarter.input.JobInStarter} for set the element to process via {@link stream.input} package
+ *
  * @author Meschio
  *
  */

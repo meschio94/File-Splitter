@@ -86,9 +86,9 @@ public abstract class StreamCore {
 	 * Will start to construct the custom directory output and add the data of the file in the class variables
 	 * Handle the errors in this process, advise the user abut the error via custom error message and update the FileElement status
 	 *
-	 * @param srcPath
-	 * @param data
-	 * @throws FileNotFoundException
+	 * @param srcPath output path
+	 * @param data element to process
+	 * @throws FileNotFoundException FileNotFoundException
 	 */
 	public StreamCore(String srcPath, FileElement data) throws FileNotFoundException{
 		setFlagTrue();
@@ -175,7 +175,7 @@ public abstract class StreamCore {
 
 	/**
 	 * Get function of status
-	 * @param Status String of the file
+	 * @return Status of the Element
 	 */
 	public String getStatus(){
 		return data.getStatus();
@@ -218,14 +218,14 @@ public abstract class StreamCore {
 
 	/**
 	 * writeParts method for writing a file, specialized in {@link InputCore} and {@link OutputCore}
-	 * @throws IOException
+	 * @throws Exception Exception
 	 */
 	abstract public void writeParts() throws Exception;
 
 	/**
 	 * Method to get for the total bytes to write, differ from input and output implementation
 	 * Used by {@link #fileProgress} to update the progress in the GUI
-	 * @return
+	 * @return Total Bytes to write for the element
 	 */
 	abstract public long getTotalBytesToWrite();
 
@@ -235,6 +235,7 @@ public abstract class StreamCore {
 
 	/**
 	 * Method that return the multiplication of byte of the size selected
+	 * @param data The element to convert
 	 * @return the byte multiplication or -1 if the file has a by parts division (-2 if occur an error)
 	 */
 	public int sizeConverter(FileElement data){
@@ -261,9 +262,9 @@ public abstract class StreamCore {
 
 	/**
 	 * Method for create a custom output folder where the result of the manipulation will be put
-	 * @param data
-	 * @param srcPath
-	 * @return
+	 * @param data element
+	 * @param srcPath output path
+	 * @return path of the output file folder
 	 * @throws IOException
 	 */
 	protected String createFolderOutput(FileElement data, String srcPath) throws IOException {
@@ -294,7 +295,7 @@ public abstract class StreamCore {
 	/**
 	 * Buffer method for handle big size part to write in output, splitting in chunks
 	 * called by {@link #writeParts}
-	 * @param outputStream
+	 * @param outputStream outputStream
 	 * @throws IOException
 	 */
 	protected void buffer(OutputStream outputStream) throws Exception {
@@ -323,8 +324,8 @@ public abstract class StreamCore {
 
 	/**
 	 * Write Bytes method to handle the {@link #buffer}, will also update the column bar progress
-	 * @param outputStream
-	 * @param part to write
+	 * @param outputStream outputStream
+	 * @param part part to write
 	 * @throws IOException
 	 */
 	protected void writeBytes(OutputStream outputStream, long part) throws Exception {

@@ -63,15 +63,15 @@ public class FSHeadingCreator{
 	private boolean successfulFlag;
 
 	/**
-	 * Constructor of the heading Document Creator, used to create the info file document with all the information required by {@link @FSHeadingReader} for reconstruct the file
+	 * Constructor of the heading Document Creator, used to create the info file document with all the information required by {@link logic.header.FSHeadingReader} for reconstruct the file
 	 * @param inputSrcPath, output Folder
-	 * @param filename
+	 * @param filename name of the file
 	 * @param operation, type of operation
 	 * @param nrOfParts, nr of parts of the elements
-	 * @param bytesPerPart
-	 * @param bytesLastPart
-	 * @param password
-	 * @throws IOException
+	 * @param bytesPerPart byper per part
+	 * @param bytesLastPart bytes last part
+	 * @param password password of the element
+	 * @throws IOException IOException
 	 */
 	public FSHeadingCreator(String inputSrcPath, String filename, String operation, long nrOfParts, long bytesPerPart, long bytesLastPart, String password) throws IOException{
 		this.successfulFlag = true;
@@ -94,7 +94,7 @@ public class FSHeadingCreator{
 
 	/**
 	 * Creating header file function, if the file already exist will update the successfulFlag to false
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public void createHeadingDocument() throws IOException{
 		if (handleFileExistence() == true){//the header alredy exist

@@ -35,7 +35,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.*;
 
 /**
- * This is the Controller of {@link @FSMainWindow}, for handle all the GUI operations the user need for use the program
+ * This is the Controller of FSMainWindow window, for handle all the GUI operations the user need for use the program
  * @author Meschio
  *
  */
@@ -203,8 +203,8 @@ public class FSMainController extends Controller implements Initializable {
 	/**
 	 * Function for set the list and some elements before loading the scene GUI
 	 *
-	 * @param masterList
-	 *            to manipulate
+	 * @param masterList to manipulate
+	 * @param outputPath output path
 	 */
 	public void setValue(ObservableList<FileElement> masterList, String outputPath) {
 		this.list = new FSlistFileElement(masterList); // set the list

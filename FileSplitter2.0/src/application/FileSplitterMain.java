@@ -58,7 +58,7 @@ public class FileSplitterMain extends Application{
 
   /**
    * Method for create if not exist the output folder of the program
-   * @return
+   * @return the path of the directory
    */
   public String createOuputPath(){
 	  String d = System.getProperty("user.home");

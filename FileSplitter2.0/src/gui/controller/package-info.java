@@ -1,7 +1,6 @@
 /**
  * Package that host all the controller of the relative fxml files
- */
-/**
+ *
  * @author Meschio
  *
  */

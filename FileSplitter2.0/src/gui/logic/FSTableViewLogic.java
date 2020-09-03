@@ -39,9 +39,9 @@ public class FSTableViewLogic extends TableView<FileElement> {
 	private FSlistFileElement list;
 
 	/**
-	 * Constructor of the class, take in input the tableview to handle the logic & features, and the list to manipulate
-	 * @param inputTable
-	 * @param inputList
+	 * Constructor of the class, take in input the tableview to handle the logic and features, and the list to manipulate
+	 * @param inputTable table to hook
+	 * @param inputList list to hook
 	 */
 	public FSTableViewLogic(TableView<FileElement> inputTable, FSlistFileElement inputList){
 		this.table = inputTable;
@@ -49,7 +49,7 @@ public class FSTableViewLogic extends TableView<FileElement> {
 	}
 
 	/**
-	 * Method to handle row order in the tableview with drag&drop mouse click feature
+	 * Method to handle row order in the tableview with drag and drop mouse click feature
 	 */
 	public void handleRowOrderTable(){
 
@@ -108,7 +108,8 @@ public class FSTableViewLogic extends TableView<FileElement> {
 
 	/**
 	 * Method for the context menu in the table view with the delete item feature
-	 * @param event
+	 * @param event event
+	 * @param selectedForDeletion item to delete
 	 */
 
 	public void handleFileDeleteOption(ActionEvent event, FileElement selectedForDeletion) {
@@ -132,7 +133,7 @@ public class FSTableViewLogic extends TableView<FileElement> {
 	/**
 	 * Method for the context menu in the table view with the edit file feature,
 	 *  open a new popup window with the scene FSChangeFile.FXML
-	 * @param event
+	 * @param event event
 	 */
 	public void handleFileEditOption(ActionEvent event) {
 		FileElement selectedForEdit = table.getSelectionModel().getSelectedItem();

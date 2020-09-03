@@ -18,7 +18,7 @@ public class FSTextfieldLogic {
 
 	/**
 	 * Constructor of the class take in input the textfield to handle
-	 * @param inputTextField
+	 * @param inputTextField textField to hook
 	 */
 	public FSTextfieldLogic (TextField inputTextField){
 		this.textField = inputTextField;
@@ -61,7 +61,7 @@ public class FSTextfieldLogic {
 
 	/**
 	 * Method for adding a new EventFilter to the textField for disable a button if the textfield is empty (null) {@link #inputTextFieldNull}
-	 * @param button do disable
+	 * @param btnToDisable button do disable
 	 */
 	public void handleNullInput(Button btnToDisable){
 		textField.addEventFilter(KeyEvent.KEY_TYPED , inputTextFieldNull(btnToDisable));
@@ -101,7 +101,7 @@ public class FSTextfieldLogic {
 
 	/**
 	 * Method for get the information numeric value, perform some checks of the input
-	 * If the value is 0<= or null will return 1
+	 * If the value is equal and minus 0 or null will return 1
 	 * @return the int information
 	 */
 	public int getFilteredInformartion(){

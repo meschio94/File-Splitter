@@ -42,11 +42,11 @@ public class FSNodesInteration {
 
 	/**
 	 * The constructor of the class, take in input the elements from the gui to disable during workingMode
-	 * @param menuFile
-	 * @param addFiles
-	 * @param startQueueProcessing
-	 * @param tableView
-	 * @param progressColumn
+	 * @param menu menuFile to hook
+	 * @param add addFiles button to hook
+	 * @param start start button to hook
+	 * @param table tableView to hook
+	 * @param progressColumn progress columns to hook
 	 */
 	public FSNodesInteration(MenuBar menu,Button add, Button start, TableView<FileElement> table, TableColumn<FileElement, Double> progressColumn ){
 		this.menu = menu;

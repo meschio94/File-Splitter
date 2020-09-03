@@ -10,7 +10,7 @@ import gui.logic.FSNodesInteration;
 import gui.progress.GlobalProgress;
 
 /**
- * Class for sort the type of job via {@link @JobStarterInterface} and create the task {@link @JobTask} for every elements in a thread
+ * Class for sort the type of job via {@link jobStarter.JobStarterInterface} and create the task {@link conccurent.JobTask} for every elements in a thread
  * @author Meschio
  *
  */
@@ -54,9 +54,9 @@ public class JobListSelector {
 
 	/**
 	 * Function for flow the list, start the right job of every elements in a thread and start the GlobalBar refresh
-	 * @param updateProgress
-	 * @param nodesInterationLogic
-	 * @throws Exception
+	 * @param updateProgress globalProgress binded value
+	 * @param nodesInterationLogic logic of the gui to block during the processing
+	 * @throws Exception Exception
 	 */
 	public void startProcessList(GlobalProgress updateProgress, FSNodesInteration nodesInterationLogic) throws Exception{
 

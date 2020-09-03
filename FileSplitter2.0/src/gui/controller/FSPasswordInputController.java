@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import logic.FileElement;
 
 /**
- * Controller for {@link @FSPasswordInput.fxml}, launched by {@link job.input.JobInDecrypt}  for input the custom password during decrypting an element
+ * Controller for FSPasswordInput window, launched by {@link job.input.JobInDecrypt}  for input the custom password during decrypting an element
  * @author Meschio
  *
  */
@@ -102,7 +102,7 @@ public class FSPasswordInputController extends Controller{
 
     /**
      * Set the boolean {@link #passwordInserted}
-     * @param value
+     * @param value boolean flag
      */
     public void setPasswordInserted(Boolean value){
     	passwordInserted = value;
@@ -135,7 +135,7 @@ public class FSPasswordInputController extends Controller{
 
     /**
      * get method for retrive password input by the user
-     * @return
+     * @return inserted password
      */
     public String getPassword(){
     	return password;

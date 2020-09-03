@@ -12,8 +12,8 @@ public interface JobStarterInterface {
 	/**
 	 * Select the right Type of job the elements is setted
 	 * @param data, the element to process
-	 * @return
-	 * @throws Exception
+	 * @return true if oepration was successful
+	 * @throws Exception Exception
 	 */
 	boolean selectJob(FileElement data) throws Exception;
 

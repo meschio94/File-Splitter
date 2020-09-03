@@ -11,7 +11,7 @@ import javax.crypto.*;
 import logic.FSPasswordHash;
 import logic.FileElement;
 /**
- * Class specialized for Crypt a file via {@link #cryptFile}, extends the {@link #OutputCore} class.
+ * Class specialized for Crypt a file via {@link #cryptFile}, extends the {@link stream.output.OutputCore} class.
  * Split a file and crypt all the parts
  * @author Meschio
  *
@@ -19,7 +19,7 @@ import logic.FileElement;
 public class OutputCrypt extends OutputCore{
 
 	/**
-	 * The password estrapulated via the {@link #data}
+	 * The password estrapulated via the data
 	 *
 	 */
 	private String password;
@@ -30,7 +30,7 @@ public class OutputCrypt extends OutputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * cipher element used for write via {@link #writeBytes},
+	 * cipher element used for write via {@link stream.StreamCore#writeBytes},
 	 * and manipulated via {@link #crypt}
 	 */
 	private Cipher cipher;
@@ -41,11 +41,13 @@ public class OutputCrypt extends OutputCore{
 	private FSPasswordHash crypt;
 
 	/**
-	 * Constructor of OutputCrypt, call the super constructor of {@link #OutputCore},
+	 * Constructor of OutputCrypt, call the super constructor of {@link stream.output.OutputCore},
 	 * and create the {@link #crypt} from the {@link #password}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * @param srcPath source output path
+	 * @param data element
+	 * @param inputCrypt inputhash of the element
+	 * @param inputPassword password of the element
+	 * @throws Exception Exception
 	 */
 	public OutputCrypt(String srcPath, FileElement data, FSPasswordHash inputCrypt, String inputPassword) throws Exception{
 		super(srcPath,data);
@@ -73,9 +75,9 @@ public class OutputCrypt extends OutputCore{
 
 	/**
 	 * cryptFile Function for write the actual FileElement from the OutSplit Constructor and crypt it
-	 * Will perform the action only if {@link #successfulFlag} is set to true,
-	 * otherwise will update the {@link #data} status to "Error"
-	 * @throws IOException
+	 * Will perform the action only if successfulFlag value is set to true,
+	 * otherwise will update the data status to "Error"
+	 * @throws IOException IOException
 	 */
 	public void cryptFile() throws Exception {
 

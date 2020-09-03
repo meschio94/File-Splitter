@@ -11,7 +11,7 @@ import logic.header.FSHeadingCreator;
 import stream.StreamCore;
 
 /**
- * Abstract class which extends the generic {@link #StreamCore}. Used for write
+ * Abstract class which extends the generic {@link StreamCore}. Used for write
  * with {@link #writeParts} and for create the header file. Update the
  * {@link #successfulFlag} if some error occur
  *
@@ -23,11 +23,11 @@ public abstract class OutputCore extends StreamCore {
 
 	/**
 	 * Constructor of OutputCore, call the parent constructor
-	 * {@link #StreamCore}, set the {@link #fileProgress} and create the headerFile.
+	 * {@link stream.StreamCore}, set the {@link #fileProgress} and create the headerFile.
 	 *
-	 * @param srcPath
-	 * @param data
-	 * @throws IOException
+	 * @param srcPath source output path
+	 * @param data element
+	 * @throws IOException IOException
 	 */
 	public OutputCore(String srcPath, FileElement data) throws IOException {
 		super(srcPath, data);

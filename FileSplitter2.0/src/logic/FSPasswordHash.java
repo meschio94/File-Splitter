@@ -15,7 +15,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * This class generate the chiper used for write/read the file by {@link #OutputCrypt},  {@link #InputDecrypt}
+ * This class generate the chiper used for write/read the file by {@link stream.output.OutputCrypt},  {@link stream.input.InputDecrypt}
  * @author Meschio
  *
  */
@@ -52,11 +52,11 @@ public class FSPasswordHash {
 	private SecretKey aesKey;
 
 	/**
-	 * Constructor of the class, take in input a password for generate a {@link #chiper}
-	 * @param inputPassword
-	 * @throws NoSuchAlgorithmException
-	 * @throws NoSuchPaddingException
-	 * @throws InvalidKeySpecException
+	 * Constructor of the class, take in input a password for generate a Chiper
+	 * @param inputPassword element password
+	 * @throws NoSuchAlgorithmException NoSuchAlgorithmException
+	 * @throws NoSuchPaddingException NoSuchPaddingException
+	 * @throws InvalidKeySpecException InvalidKeySpecException
 	 */
 	public FSPasswordHash(String inputPassword) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException{
 		if ((inputPassword == null) || (inputPassword == "")){
@@ -73,7 +73,7 @@ public class FSPasswordHash {
 	/**
 	 * Generate the salt for the password
 	 * @param password
-	 * @return
+	 * @return the salt of the password
 	 */
 	private byte[] makeSalt(String password){
 		byte[] saltBytes = password.getBytes();
@@ -90,9 +90,9 @@ public class FSPasswordHash {
 	 * Create a generic Chiper after salted the {@link #password}, generate an aesKey and IvParameterSpec and store it in {@link #aesKey} and in {@link #ivParam}
 	 * @param salt to use for the password
 	 * @return the Chiper
-	 * @throws NoSuchAlgorithmException
-	 * @throws NoSuchPaddingException
-	 * @throws InvalidKeySpecException
+	 * @throws NoSuchAlgorithmException NoSuchAlgorithmException
+	 * @throws NoSuchPaddingException NoSuchPaddingException
+	 * @throws InvalidKeySpecException InvalidKeySpecException
 	 */
 	private Cipher makeCipher(byte [] salt) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeySpecException{
 		KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, 1024, 256);
@@ -107,8 +107,8 @@ public class FSPasswordHash {
 	/**
 	 * Create and return the Crypt Chiper for Crypt a file
 	 * @return Crypt Chiper
-	 * @throws InvalidKeyException
-	 * @throws InvalidAlgorithmParameterException
+	 * @throws InvalidKeyException InvalidKeyException
+	 * @throws InvalidAlgorithmParameterException InvalidAlgorithmParameterException
 	 */
 	public Cipher getEncryptChiper() throws InvalidKeyException, InvalidAlgorithmParameterException{
 		cipher.init(Cipher.ENCRYPT_MODE, aesKey, ivParam);
@@ -117,9 +117,9 @@ public class FSPasswordHash {
 
 	/**
 	 * Create and return the decrypt Chiper for decrypt a file
-	 * @return Decrypt Chiper
-	 * @throws InvalidKeyException
-	 * @throws InvalidAlgorithmParameterException
+	 * @return Decrypted Chiper
+	 * @throws InvalidKeyException InvalidKeyException
+	 * @throws InvalidAlgorithmParameterException InvalidAlgorithmParameterException
 	 */
 	public Cipher getDecryptChiper() throws InvalidKeyException, InvalidAlgorithmParameterException{
 		cipher.init(Cipher.DECRYPT_MODE, aesKey, ivParam);
@@ -128,7 +128,7 @@ public class FSPasswordHash {
 
 	/**
 	 * Return the #defaultPassword
-	 * @return
+	 * @return default password
 	 */
 	public String getDefaultPassword(){
 		return defaultPassword;
@@ -136,7 +136,7 @@ public class FSPasswordHash {
 
 	/**
 	 * return the hash code of the {@link #aesKey}
-	 * @return
+	 * @return hash of the file
 	 */
 	public int getHashCode(){
 		return aesKey.hashCode();

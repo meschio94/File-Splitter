@@ -5,7 +5,7 @@ import logic.FileElement;
 import stream.output.OutputCompress;
 
 /**
- * Specialized class of {@link @JobOutInterface} for compress a file via {@link @OutputCompress}
+ * Specialized class of {@link job.output.JobOutInterface} for compress a file via {@link stream.output.OutputCompress}
  * @author Meschio
  *
  */
@@ -17,10 +17,10 @@ public class JobOutCompress implements JobOutInterface{
 	private OutputCompress job;
 
 	/**
-	 * Constructor of the class for initialize the {@link @OutputCompress}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * Constructor of the class for initialize the {@link stream.output.OutputCompress}
+	 * @param srcPath output path
+	 * @param data element
+	 * @throws Exception Exception
 	 */
 	public JobOutCompress(String srcPath, FileElement data) throws Exception {
 		this.job = new OutputCompress(srcPath, data);

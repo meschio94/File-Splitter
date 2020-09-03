@@ -109,7 +109,7 @@ public class FSChangeFileDataController extends Controller implements Initializa
 
     /**
      * method for closing the window without saving the changes
-     * @param event
+     * @param event event
      */
     @FXML
     public void closeButton(ActionEvent event){
@@ -143,6 +143,7 @@ public class FSChangeFileDataController extends Controller implements Initializa
 
     /**
      * Method that save the new setting of the file when ok button is pressed
+     * @param event event
      */
     @FXML
     public void save(ActionEvent event) {

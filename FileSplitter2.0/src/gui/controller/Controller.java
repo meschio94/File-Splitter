@@ -16,7 +16,7 @@ public abstract class Controller implements Initializable{
 
 	/**
 	 * Set  the main
-	 * @param main
+	 * @param main set the main app
 	 */
     public void setMainApp(FileSplitterMain main) {
         this.main = main;

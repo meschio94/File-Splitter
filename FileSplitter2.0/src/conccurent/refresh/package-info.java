@@ -1,7 +1,6 @@
 /**
- * This Package handle the refresh of some GUI elements, table & global bar
- */
-/**
+ * This Package handle the refresh of some GUI elements, table and the global bar
+ *
  * @author Meschio
  *
  */

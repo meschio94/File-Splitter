@@ -7,7 +7,7 @@ import error.AlertMaker;
 import javafx.collections.ObservableList;
 
 /**
- * This is a Util class of {@link @FSlistFileElement} with some useful methods
+ * This is a Util class of {@link logic.FSlistFileElement} with some useful methods
  * @author Meschio
  *
  */
@@ -20,7 +20,7 @@ public class FSlistElementInspector {
 
 	/**
 	 * Constructor of the class
-	 * @param inputData
+	 * @param inputData element
 	 */
 	public FSlistElementInspector(FileElement inputData){
 		this.data = inputData;
@@ -57,7 +57,7 @@ public class FSlistElementInspector {
 
 	/**
 	 * method for check if the file is already in the queue
-	 * @param list
+	 * @param list list to check
 	 * @return true if the file is already in the queue, false otherwise
 	 */
 	public boolean fileListExist(ObservableList<FileElement> list){

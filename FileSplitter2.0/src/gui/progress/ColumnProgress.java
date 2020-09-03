@@ -3,7 +3,7 @@ package gui.progress;
 import javafx.beans.property.DoubleProperty;
 
 /**
- * This class pourpose is to update the {@link logic.FileElement#progress} value binded to the progress column of the {@link @FileElement} for the GUI TableView
+ * This class pourpose is to update the progress value binded to the progress column of the {@link logic.FileElement} for the GUI TableView
  * @author Meschio
  *
  */
@@ -36,8 +36,8 @@ public class ColumnProgress {
 
 	/**
 	 * Constructor of ColumnProgress, get the observable value binded to the progressbar and the file size
-	 * @param inputProgress
-	 * @param inputSize
+	 * @param inputProgress numeric progress
+	 * @param inputSize size of the file
 	 */
 	public ColumnProgress (DoubleProperty inputProgress, long inputSize){
 		this.progress = inputProgress;
@@ -50,6 +50,7 @@ public class ColumnProgress {
 
 	/**
 	 * Method to increase the {@link #progress} value of 0.01 when the cycleCount complete the value of onePerCent
+	 * @throws Exception Exception
 	 */
 	public synchronized void incColumnBar() throws Exception{
 		cycleCount++;

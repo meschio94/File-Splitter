@@ -106,7 +106,7 @@ public class FileElement {
 
 	/**
 	 * set function of Type
-	 * @param inputType
+	 * @param inputType type of operation of the element
 	 */
 	public void setType(String inputType){
 		type.set(inputType);
@@ -114,7 +114,7 @@ public class FileElement {
 
 	/**
 	 * set function of password
-	 * @param password of the file
+	 * @param inputPassword password of the file
 	 */
 	public void setPassword(String inputPassword){
 		password.set(inputPassword);
@@ -122,7 +122,7 @@ public class FileElement {
 
 	/**
 	 * set function of information
-	 * @param inputInformation
+	 * @param inputInformation information of the element
 	 */
 	public void setInformation(int inputInformation){
 		information.setValue(inputInformation);
@@ -130,7 +130,7 @@ public class FileElement {
 
 	/**
 	 * set function of progress
-	 * @param inputProgress
+	 * @param inputProgress progress of the element
 	 */
 	public void setProgress(double inputProgress){
 		progress.setValue(inputProgress);

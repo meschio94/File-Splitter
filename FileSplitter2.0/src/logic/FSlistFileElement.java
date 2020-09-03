@@ -16,7 +16,7 @@ import logic.header.FSHeadingReader;
 
 
 /**
- * This Class host the {@link @FileElement} wich the list is composed, handle some control/filter when an item is added and set the type of mode of the list
+ * This Class host the {@link logic.FileElement} wich the list is composed, handle some control/filter when an item is added and set the type of mode of the list
  *
  *
  * @author Meschio
@@ -54,13 +54,13 @@ public class FSlistFileElement {
 
 
 	/**
-	 * The default method for add item/items to the list, get in input a list<FileElement> and cycle it one by one
+	 * The default method for add item/items to the list, get in input a list and cycle it one by one
 	 * @param tempList the list of elements to add
-	 * @param type of operation
-	 * @param information
-	 * @param size
-	 * @param password
-	 * @throws IOException
+	 * @param type type of operation
+	 * @param information information of the element
+	 * @param size size of the information
+	 * @param password password of the element
+	 * @throws IOException IOException
 	 */
 	public void addMultipleItems(List<File> tempList, String type,int information, String size, String password)throws IOException{
 
@@ -73,11 +73,12 @@ public class FSlistFileElement {
 	/**
 	 * add a single item in the list, check for duplicate and division split math
 	 * if a file is a .sp extension and the mode meet the requirement will change the mode of the queue with modeBoolEngine
-	 * @param inputSrcPath
-	 * @param inputType
-	 * @param inputInformation
-	 * @param inputSize
-	 * @param inputPassword
+	 * @param inputSrcPath sourcePath of the element
+	 * @param inputType type of operation
+	 * @param inputInformation information of the element
+	 * @param inputSize size of the information
+	 * @param inputPassword password of the element
+	 * @throws IOException IOException
 	 */
 	public void addItem(String inputSrcPath, String inputType, int inputInformation, String inputSize, String inputPassword )throws IOException{
 		String password;
@@ -104,7 +105,7 @@ public class FSlistFileElement {
 
 	/**
 	 * method for remove an item
-	 * @param data
+	 * @param data element of the list
 	 */
 	public void remove(FileElement data){
 		list.remove(data);
@@ -295,8 +296,9 @@ public class FSlistFileElement {
 
 	/**
 	 * If a .sp file is added in the queue this method will update the FileElement Type and password item
-	 * @throws IOException
-	 * @throws FileNotFoundException
+	 * @param data element
+	 * @throws IOException IOException
+	 * @throws FileNotFoundException FileNotFoundException
 	 */
 	public void updateFileInfoChopMode(FileElement data) throws FileNotFoundException, IOException{
 		FSHeadingReader headerInfo = new FSHeadingReader(data);

@@ -4,7 +4,7 @@ import logic.FileElement;
 import stream.input.InputSplit;
 
 /**
- * Specialized class of {@link @JobInInterface} for process a splitted element and reconstruct it {@link @InputSplit}
+ * Specialized class of {@link job.input.JobInInterface} for process a splitted element and reconstruct it {@link stream.input.InputSplit}
  * @author Meschio
  *
  */
@@ -15,10 +15,10 @@ public class JobInSplit implements JobInInterface{
 	private InputSplit job;
 
 	/**
-	 * Constructor of the class for initialize the {@link @InputSplit}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * Constructor of the class for initialize the {@link stream.input.InputSplit}
+	 * @param srcPath source path
+	 * @param data element
+	 * @throws Exception Exception
 	 */
 	public JobInSplit(String srcPath, FileElement data) throws Exception {
 

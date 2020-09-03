@@ -15,7 +15,7 @@ import logic.FileElement;
 import stream.input.InputDecrypt;
 
 /**
- * Specialized class of {@link @JobInInterface} for process a compressed elements and and extract it via {@link @InputDecrypt} and check the relative password
+ * Specialized class of {@link job.input.JobInInterface} for process a compressed elements and and extract it via {@link stream.input.InputDecrypt} and check the relative password
  * @author Meschio
  *
  */

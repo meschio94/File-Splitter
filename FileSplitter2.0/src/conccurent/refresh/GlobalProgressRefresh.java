@@ -41,8 +41,9 @@ public class GlobalProgressRefresh extends Task<Void>{
 
 	/**
 	 * Constructor of the class, take in input the list to process and the progressBar class attached to it
-	 * @param inputList
-	 * @param inputGlobalProgress
+	 * @param inputList list
+	 * @param inputGlobalProgress globalProgress to bind
+	 * @param nodesInterationLogic nodes of GUI to block
 	 */
 	public GlobalProgressRefresh (ObservableList<FileElement> inputList, GlobalProgress inputGlobalProgress,FSNodesInteration nodesInterationLogic){
 		this.list = inputList;
@@ -54,7 +55,7 @@ public class GlobalProgressRefresh extends Task<Void>{
 	/**
 	 * Create the array of elements to parse to the relative list Index
 	 * @param inputList
-	 * @return
+	 * @return the filtered list to process
 	 */
 	private int[] createProcessingArray(ObservableList<FileElement> inputList){
 		int listProcessing[] = new int[processingSize(list)];
@@ -74,7 +75,7 @@ public class GlobalProgressRefresh extends Task<Void>{
 
 	/**
 	 * get the numbers of elements to parse
-	 * @param inputList
+	 * @param inputList list
 	 * @return the numbers of elements to parse
 	 */
 	private int processingSize(ObservableList<FileElement> inputList){

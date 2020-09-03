@@ -1,7 +1,6 @@
 /**
  * Package for host all the FXML files
- */
-/**
+ *
  * @author Meschio
  *
  */

@@ -17,10 +17,10 @@ public class JobOutCrypt implements JobOutInterface {
 	private FSPasswordHash crypt;
 
 	/**
-	 * Constructor of the class for initialize the {@link @OutputCrypt}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * Constructor of the class for initialize the {@link stream.output.OutputCrypt}
+	 * @param srcPath output path
+	 * @param data element
+	 * @throws Exception Exception
 	 */
 	public JobOutCrypt(String srcPath, FileElement data) throws Exception {
 		String password; //password to use for encrypt

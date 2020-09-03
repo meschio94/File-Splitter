@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import logic.FileElement;
 
 /**
- * Class specialized for split a file via {@link #splitFile}, extends the {@link #InputCore} class.
+ * Class specialized for split a file via {@link #splitFile}, extends the {@link stream.input.InputCore} class.
  * Reconstruct a file with all the parts
  * @author Meschio
  *
@@ -23,10 +23,10 @@ public class InputSplit extends InputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * Constructor of InputSplit, just call the super constructor of {@link #OutputCore}
-	 * @param srcPath
-	 * @param data
-	 * @throws IOException
+	 * Constructor of InputSplit, just call the super constructor of {@link stream.output.OutputCore}
+	 * @param srcPath source output path
+	 * @param data element
+	 * @throws IOException IOException
 	 */
 	public InputSplit(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -52,7 +52,7 @@ public class InputSplit extends InputCore{
 	 * splitFile Function for reconstruct the actual FileElement from the InputSplit Constructor
 	 * Will perform the action only if {@link #successfulFlag} is set to true,
 	 * otherwise will update the {@link #data} status to "Error"
-	 * @throws IOException
+	 * @throws IOException IOException
 	 */
 	public void splitFile() throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core

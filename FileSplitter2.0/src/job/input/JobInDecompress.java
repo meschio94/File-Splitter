@@ -4,7 +4,7 @@ import logic.FileElement;
 import stream.input.InputDecompress;
 
 /**
- * Specialized class of {@link @JobInInterface} for process a compressed elements and and extract it via {@link @InputDecompress}
+ * Specialized class of {@link job.input.JobInInterface} for process a compressed elements and and extract it via {@link stream.input.InputDecompress}
  * @author Meschio
  *
  */
@@ -16,10 +16,10 @@ public class JobInDecompress implements JobInInterface{
 	private InputDecompress job;
 
 	/**
-	 * Constructor of the class for initialize the {@link @InputDecompress}
-	 * @param srcPath
-	 * @param data
-	 * @throws Exception
+	 * Constructor of the class for initialize the {@link stream.input.InputDecompress}
+	 * @param srcPath source path
+	 * @param data Element
+	 * @throws Exception Exception
 	 */
 	public JobInDecompress(String srcPath, FileElement data) throws Exception {
 

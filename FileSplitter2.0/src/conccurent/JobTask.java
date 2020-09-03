@@ -23,8 +23,8 @@ public class JobTask extends Task<Void>{
 
 	/**
 	 * Constructor of the class, take in input the FileElement to process and the type of job the queue is in
-	 * @param inputData
-	 * @param inputJob
+	 * @param inputData element to process
+	 * @param inputJob type of job to process
 	 */
 	public JobTask(FileElement inputData, JobStarterInterface inputJob){
 		this.data = inputData;

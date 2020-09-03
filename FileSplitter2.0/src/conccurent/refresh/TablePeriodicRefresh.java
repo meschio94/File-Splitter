@@ -33,8 +33,8 @@ public class TablePeriodicRefresh extends Task<Void> {
 	/**
 	 * Constructor of the TablePeriodicRefresh
 	 *
-	 * @param inputTable
-	 * @param inputGlobalProgress
+	 * @param inputTable the TableView to hook
+	 * @param inputGlobalProgress ProgressBar binded value
 	 */
 	public TablePeriodicRefresh(TableView<FileElement> inputTable, GlobalProgress inputGlobalProgress) {
 		this.table = inputTable;

@@ -6,7 +6,7 @@ import logic.FSlistFileElement;
 import logic.FileElement;
 
 /**
- * This class pourpose is to update the GUI GlobalProgress Bar with the right amount of progress from {@link @GlobalProgressRefresh} in the GUI
+ * This class pourpose is to update the GUI GlobalProgress Bar with the right amount of progress from {@link conccurent.refresh.GlobalProgressRefresh} in the GUI
  * @author Meschio
  *
  */
@@ -54,7 +54,7 @@ public class GlobalProgress {
 
 	/**
 	 * get method for the {@link #isDone} flag
-	 * @return
+	 * @return true if the operation is done
 	 */
 	public boolean isDone(){
 		return isDone;
