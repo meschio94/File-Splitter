@@ -52,8 +52,6 @@ public class InputDecompress extends InputCore{
 	 * Used by {@link #writeParts}
 	 */
 	protected void setOutputStream(String srcPathOut) throws FileNotFoundException{
-
-		System.out.println("header extension pure :" + headerInfo.getFileExtension() );//aka
 		fileOutputStream = new BufferedOutputStream(new FileOutputStream(srcPathOut + File.separator + headerInfo.getFileNamePure() + headerInfo.getFileExtension()));
 	}
 
@@ -103,7 +101,6 @@ public class InputDecompress extends InputCore{
 			int len;
 
 			while ((len = zipStream.read(buffer)) > 0) {
-            	System.out.println("len value " + len);
             	fileExtractedStream.write(buffer, 0, len); //write in the support bytearray
            }
 
@@ -113,9 +110,7 @@ public class InputDecompress extends InputCore{
 		}
 		zipStream.closeEntry();//close zipstream entry
 		zipStream.close();//close the zipstream
-
-		System.out.println("size  fileExtractedStream " + fileExtractedStream.size());
-
+		
 		return fileExtractedStream.toByteArray();
 	}
 
