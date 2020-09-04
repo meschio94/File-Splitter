@@ -9,7 +9,7 @@ import java.io.OutputStream;
 
 import logic.FileElement;
 /**
- * Class specialized for split a file via {@link #splitFile}, extends the {@link stream.output.OutputCore} class.
+ * Class specialized for split a file via {@link #splitFile}, extends the {@link #OutputCore} class.
  * Split an Element in parts
  * @author Meschio
  *
@@ -22,10 +22,10 @@ public class OutputSplit extends OutputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * Constructor of OutputSplit, just call the super constructor of {@link stream.output.OutputCore}
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * Constructor of OutputSplit, just call the super constructor of {@link #OutputCore}
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public OutputSplit(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -49,16 +49,16 @@ public class OutputSplit extends OutputCore{
 
 	/**
 	 * splitFile Function for write the actual FileElement from the OutSplit Constructor
-	 * Will perform the action only if successfulFlag value is set to true,
-	 * otherwise will update the data status to "Error"
-	 * @throws IOException IOException
+	 * Will perform the action only if {@link #successfulFlag} is set to true,
+	 * otherwise will update the {@link #data} status to "Error"
+	 * @throws IOException
 	 */
 	public void splitFile() throws Exception {
-
+		System.out.println("check status split pre writeparts : " + isSuccessful());//aka
 		if(isSuccessful()==true){//check all previous operation in stream core
 			writeParts();
 		} else {
-			data.setStatus("Error");
+			data.setStatus("Error"); System.out.println("cambio stato error");//aka
 		}
 
 	}
@@ -75,6 +75,7 @@ public class OutputSplit extends OutputCore{
 	 * For OutputSplit close the actual {@link #fileOutputStream}
 	 */
 	protected void handleMethodEndOperation() throws IOException{
+		//nothing to do for splimethod
 		getOutputStream().close();
 	}
 }

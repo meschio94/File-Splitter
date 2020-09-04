@@ -1,6 +1,7 @@
 package stream.input;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,9 +14,9 @@ import logic.header.FSHeadingReader;
 import stream.StreamCore;
 
 /**
- * Abstract class which extends the generic {@link stream.StreamCore}. Used for write
- * with {@link stream.StreamCore#writeParts} and for read the header file. Update the
- * successfulFlag if some error occur
+ * Abstract class which extends the generic {@link #StreamCore}. Used for write
+ * with {@link #writeParts} and for read the header file. Update the
+ * {@link #successfulFlag} if some error occur
  *
  * @author Meschio
  *
@@ -26,11 +27,11 @@ public abstract class InputCore extends StreamCore {
 
 	/**
 	 * Constructor of InputCore, call the parent constructor
-	 * {@link stream.StreamCore}, set the fileProgress value and read the headerFile.
+	 * {@link #StreamCore}, set the {@link #fileProgress} and read the headerFile.
 	 *
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public InputCore(String srcPath, FileElement data) throws IOException {
 		super(srcPath, data);
@@ -47,17 +48,9 @@ public abstract class InputCore extends StreamCore {
 	/******************************************************/
 	/**************** | ABSTRACT METHOD | *****************/
 	/******************************************************/
-	
+
 	/**
-	 * Method for close the current stream and open the next part
-	 *
-	 * @param index of part
-	 * @throws IOException IOException
-	 */
-	abstract public void openNextFile(int index) throws IOException;
-	
-	/**
-	 * Method used by {@link stream.StreamCore.#writeParts} for get the OutputStream, specialized
+	 * Method used by {@link #writeParts} for get the OutputStream, specialized
 	 * in the inherited class
 	 *
 	 * @return the OutputStream
@@ -65,7 +58,7 @@ public abstract class InputCore extends StreamCore {
 	protected abstract OutputStream getOutputStream();
 
 	/**
-	 * Method used by {@link stream.StreamCore.#writeParts} for set the OutputStream, specialized
+	 * Method used by {@link #writeParts} for set the OutputStream, specialized
 	 * in the inherited class
 	 *
 	 * @param srcPathOut
@@ -76,7 +69,7 @@ public abstract class InputCore extends StreamCore {
 	protected abstract void setOutputStream(String srcPathOut) throws FileNotFoundException;
 
 	/**
-	 * Method used by {@link stream.StreamCore.#writeParts} for set the start cycle write
+	 * Method used by {@link #writeParts} for set the start cycle write
 	 * operation
 	 *
 	 * @param partIndex, index of the cycle
@@ -85,7 +78,7 @@ public abstract class InputCore extends StreamCore {
 	protected abstract void handleMethodStartOperation(int partIndex) throws IOException;
 
 	/**
-	 * Method usedby {@link stream.StreamCore.#writeParts} for set the final cycle write operation
+	 * Method usedby {@link #writeParts} for set the final cycle write operation
 	 *
 	 * @param partIndex, index of the cycle
 	 * @throws IOException
@@ -151,9 +144,9 @@ public abstract class InputCore extends StreamCore {
 	
 	/**
 	 * Method for create a custom output folder where the result of the manipulation will be put
-	 * @param data element
-	 * @param srcPath output path
-	 * @return path of the output file folder
+	 * @param data
+	 * @param srcPath
+	 * @return
 	 * @throws IOException
 	 */
 	protected String createFolderOutput(FileElement data, String srcPath) throws IOException {
@@ -181,7 +174,26 @@ public abstract class InputCore extends StreamCore {
 		return directoryName;
 	}
 	
-	
+	/**
+	 * Method for close the current stream and open the next part
+	 *
+	 * @param index of part
+	 * @throws IOException
+	 */
+	public void openNextFile(int index) throws IOException {
+		stream.close(); // close the header file
+
+		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
+		file = new File(nextFile); // open the part 1
+
+		if ((nextFile == null) || (file.exists() == false)) {
+			setFlagFalse();
+
+		} else {
+			stream = new FileInputStream(file);// open a new stream
+		}
+
+	}
 
 	/**
 	 * writeParts specialized class of {@link #InputCore} for chop a file with every part of it.<p>
@@ -223,6 +235,9 @@ public abstract class InputCore extends StreamCore {
 				}
 			}
 		}
+
+		stream.close();
+		getOutputStream().close();
 
 
 	}

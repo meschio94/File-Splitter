@@ -86,9 +86,9 @@ public abstract class StreamCore {
 	 * Will start to construct the custom directory output and add the data of the file in the class variables
 	 * Handle the errors in this process, advise the user abut the error via custom error message and update the FileElement status
 	 *
-	 * @param srcPath output path
-	 * @param data element to process
-	 * @throws FileNotFoundException FileNotFoundException
+	 * @param srcPath
+	 * @param data
+	 * @throws FileNotFoundException
 	 */
 	public StreamCore(String srcPath, FileElement data) throws FileNotFoundException{
 		setFlagTrue();
@@ -114,7 +114,7 @@ public abstract class StreamCore {
 			e.printStackTrace();
 		}
 
-		if (isSuccessful() == true){
+		
 			this.type = data.getType();
 			this.information = data.getInformation();
 			this.size = sizeConverter(data);
@@ -124,7 +124,7 @@ public abstract class StreamCore {
 
 
 			this.stream = new FileInputStream(this.file);
-		}
+		
 	}
 
 	/**
@@ -175,7 +175,7 @@ public abstract class StreamCore {
 
 	/**
 	 * Get function of status
-	 * @return Status of the Element
+	 * @param Status String of the file
 	 */
 	public String getStatus(){
 		return data.getStatus();
@@ -199,7 +199,8 @@ public abstract class StreamCore {
 	 * @return int of nr of parts
 	 */
 	abstract public long handleNrOfParts();
-
+	
+	abstract protected String createFolderOutput(FileElement data, String srcPath) throws IOException;
 
 	/**
 	 * method for calculating the bytes per part
@@ -218,21 +219,16 @@ public abstract class StreamCore {
 
 	/**
 	 * writeParts method for writing a file, specialized in {@link InputCore} and {@link OutputCore}
-	 * @throws Exception Exception
+	 * @throws IOException
 	 */
 	abstract public void writeParts() throws Exception;
 
 	/**
 	 * Method to get for the total bytes to write, differ from input and output implementation
 	 * Used by {@link #fileProgress} to update the progress in the GUI
-	 * @return Total Bytes to write for the element
+	 * @return
 	 */
 	abstract public long getTotalBytesToWrite();
-	
-	/**
-	 * Method for create a custom output folder where the result of the manipulation will be put
-	 */
-	abstract protected String createFolderOutput(FileElement data, String srcPath) throws IOException;
 
 	/******************************************************/
 	/*************** | OPERATION METHODs | ****************/
@@ -240,7 +236,6 @@ public abstract class StreamCore {
 
 	/**
 	 * Method that return the multiplication of byte of the size selected
-	 * @param data The element to convert
 	 * @return the byte multiplication or -1 if the file has a by parts division (-2 if occur an error)
 	 */
 	public int sizeConverter(FileElement data){
@@ -265,12 +260,12 @@ public abstract class StreamCore {
 		}
 	}
 
-
+	
 
 	/**
 	 * Buffer method for handle big size part to write in output, splitting in chunks
 	 * called by {@link #writeParts}
-	 * @param outputStream outputStream
+	 * @param outputStream
 	 * @throws IOException
 	 */
 	protected void buffer(OutputStream outputStream) throws Exception {
@@ -299,8 +294,8 @@ public abstract class StreamCore {
 
 	/**
 	 * Write Bytes method to handle the {@link #buffer}, will also update the column bar progress
-	 * @param outputStream outputStream
-	 * @param part part to write
+	 * @param outputStream
+	 * @param part to write
 	 * @throws IOException
 	 */
 	protected void writeBytes(OutputStream outputStream, long part) throws Exception {
@@ -309,7 +304,7 @@ public abstract class StreamCore {
 			fileProgress.incColumnBar();//update the progress of the element
 
 			byte[] buffer = new byte[(int) part];
-			if(stream.read(buffer) != -1){
+			if(stream.read(buffer) >= 0){
 				outputStream.write(buffer);
 			}
 

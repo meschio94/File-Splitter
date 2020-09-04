@@ -2,7 +2,6 @@ package stream.input;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.io.OutputStream;
 import logic.FileElement;
 
 /**
- * Class specialized for split a file via {@link #splitFile}, extends the {@link stream.input.InputCore} class.
+ * Class specialized for split a file via {@link #splitFile}, extends the {@link #InputCore} class.
  * Reconstruct a file with all the parts
  * @author Meschio
  *
@@ -24,10 +23,10 @@ public class InputSplit extends InputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * Constructor of InputSplit, just call the super constructor of {@link stream.output.OutputCore}
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * Constructor of InputSplit, just call the super constructor of {@link #OutputCore}
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public InputSplit(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -53,7 +52,7 @@ public class InputSplit extends InputCore{
 	 * splitFile Function for reconstruct the actual FileElement from the InputSplit Constructor
 	 * Will perform the action only if {@link #successfulFlag} is set to true,
 	 * otherwise will update the {@link #data} status to "Error"
-	 * @throws IOException IOException
+	 * @throws IOException
 	 */
 	public void splitFile() throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core
@@ -79,25 +78,5 @@ public class InputSplit extends InputCore{
 		//nothing to do for splimethod
 	}
 
-	/**
-	 * Method for close the current stream and open the next part
-	 *
-	 * @param index of part
-	 * @throws IOException IOException
-	 */
-	public void openNextFile(int index) throws IOException {
-		stream.close(); // close the header file
 
-		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
-		file = new File(nextFile); // open the part 1
-
-		if ((nextFile == null) || (file.exists() == false)) {
-			setFlagFalse();
-
-		} else {
-			stream = new FileInputStream(file);// open a new stream
-		}
-
-	}
-	
 }

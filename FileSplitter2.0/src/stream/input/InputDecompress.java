@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.zip.ZipInputStream;
 import logic.FileElement;
 
 /**
- * Class specialized for decompress a file via {@link #decompressFile}, extends the {@link stream.input.InputCore} class.
+ * Class specialized for decompress a file via {@link #decompressFile}, extends the {@link #InputCore} class.
  *
  * @author Meschio
  *
@@ -31,10 +30,10 @@ public class InputDecompress extends InputCore{
 	private BufferedOutputStream fileOutputStream;
 
 	/**
-	 * Constructor of InputDecompress, just call the super constructor of {@link stream.input.InputCore}
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * Constructor of InputDecompress, just call the super constructor of {@link #InputCore}
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public InputDecompress(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -53,19 +52,21 @@ public class InputDecompress extends InputCore{
 	 * Used by {@link #writeParts}
 	 */
 	protected void setOutputStream(String srcPathOut) throws FileNotFoundException{
+
+		System.out.println("header extension pure :" + headerInfo.getFileExtension() );//aka
 		fileOutputStream = new BufferedOutputStream(new FileOutputStream(srcPathOut + File.separator + headerInfo.getFileNamePure() + headerInfo.getFileExtension()));
 	}
 
 	/**
 	 * decompressFile Function for extract the Files parts in the outputStream
 	 *
-	 * @throws IOException IOException
+	 * @throws IOException
 	 */
 	public void decompressFile() throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core
 			writeParts();
 		} else {
-			data.setStatus("Error");
+			data.setStatus("Error"); System.out.println("cambio stato error");//aka
 		}
 	}
 
@@ -102,6 +103,7 @@ public class InputDecompress extends InputCore{
 			int len;
 
 			while ((len = zipStream.read(buffer)) > 0) {
+            	System.out.println("len value " + len);
             	fileExtractedStream.write(buffer, 0, len); //write in the support bytearray
            }
 
@@ -112,14 +114,16 @@ public class InputDecompress extends InputCore{
 		zipStream.closeEntry();//close zipstream entry
 		zipStream.close();//close the zipstream
 
+		System.out.println("size  fileExtractedStream " + fileExtractedStream.size());
+
 		return fileExtractedStream.toByteArray();
 	}
 
 	/**
 	 * Method for set the new inputStream where to read the file
-	 * @param stream inputStream
+	 * @param stream
 	 * @return new stream
-	 * @throws IOException IOException
+	 * @throws IOException
 	 */
 	private ByteArrayInputStream setNewStream(InputStream stream) throws IOException{
 		byte[] byteArray = extractInBufferInput(stream); //support byteArray, extract the array from the ByteArrayOutputStream
@@ -127,27 +131,6 @@ public class InputDecompress extends InputCore{
 		ByteArrayInputStream fileExtractedInputStream = new ByteArrayInputStream(byteArray);
 
 		return fileExtractedInputStream;
-	}
-
-	/**
-	 * Method for close the current stream and open the next part
-	 *
-	 * @param index of part
-	 * @throws IOException IOException
-	 */
-	public void openNextFile(int index) throws IOException {
-		stream.close(); // close the header file
-
-		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
-		file = new File(nextFile); // open the part 1
-
-		if ((nextFile == null) || (file.exists() == false)) {
-			setFlagFalse();
-
-		} else {
-			stream = new FileInputStream(file);// open a new stream
-		}
-
 	}
 
 

@@ -13,7 +13,7 @@ import logic.header.FSHeadingCreator;
 import stream.StreamCore;
 
 /**
- * Abstract class which extends the generic {@link StreamCore}. Used for write
+ * Abstract class which extends the generic {@link #StreamCore}. Used for write
  * with {@link #writeParts} and for create the header file. Update the
  * {@link #successfulFlag} if some error occur
  *
@@ -25,16 +25,17 @@ public abstract class OutputCore extends StreamCore {
 
 	/**
 	 * Constructor of OutputCore, call the parent constructor
-	 * {@link stream.StreamCore}, set the {@link #fileProgress} and create the headerFile.
+	 * {@link #StreamCore}, set the {@link #fileProgress} and create the headerFile.
 	 *
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public OutputCore(String srcPath, FileElement data) throws IOException {
 		super(srcPath, data);
 		if (isSuccessful() == true) {// check if the previous operation was successful
-
+			
+			
 			createHeaderFile(data, getSrcPathOut());
 		}
 
@@ -74,7 +75,7 @@ public abstract class OutputCore extends StreamCore {
 	protected abstract void handleMethodStartOperation(int partIndex) throws IOException;
 
 	/**
-	 * Method usedby {@link #writeParts} for set the final cycle write operation
+	 * Method used by {@link #writeParts} for set the final cycle write operation
 	 *
 	 * @param partIndex, index of the cycle
 	 * @throws IOException
@@ -137,7 +138,8 @@ public abstract class OutputCore extends StreamCore {
 			return (handleBytesPerParts() + (getFileLenght() % (handleNrOfParts()))); // Sum the bytes of the parts and the reminder of the division
 		}
 		if (handleNrOfParts() > 0) {
-
+			System.out.println(
+					"handleBytesFinalPart " + (getFileLenght() - (handleBytesPerParts() * (handleNrOfParts())))); // aka
 			return (getFileLenght() - (handleBytesPerParts() * (handleNrOfParts())));
 		}
 		if (handleNrOfParts() == 0) { // case the file is composed of only 1
@@ -157,9 +159,9 @@ public abstract class OutputCore extends StreamCore {
 	
 	/**
 	 * Method for create a custom output folder where the result of the manipulation will be put
-	 * @param data element
-	 * @param srcPath output path
-	 * @return path of the output file folder
+	 * @param data
+	 * @param srcPath
+	 * @return
 	 * @throws IOException
 	 */
 	protected String createFolderOutput(FileElement data, String srcPath) throws IOException {
@@ -196,6 +198,7 @@ public abstract class OutputCore extends StreamCore {
 	 * @throws IOException
 	 */
 	protected boolean createHeaderFile(FileElement data, String srcPath) throws IOException {
+		
 		FSHeadingCreator header = new FSHeadingCreator(srcPath, file.getName(), type, handleNrOfParts(),
 				handleBytesPerParts(), handleBytesFinalPart(), this.password);
 		header.createHeadingDocument();
@@ -219,6 +222,9 @@ public abstract class OutputCore extends StreamCore {
 	 * for cycle operations specialized in the inherited class
 	 */
 	public void writeParts() throws Exception {
+		System.out.println("nr parti : " + handleNrOfParts());// aka
+		System.out.println("Byte prima parte :  " + handleBytesPerParts());// aka
+		System.out.println("Byte parte finale" + handleBytesFinalPart());// aka
 
 		long nrOfParts = handleNrOfParts();
 		for (int i = 1; i <= nrOfParts; i++) {
@@ -226,7 +232,7 @@ public abstract class OutputCore extends StreamCore {
 				setOutputStream(srcPathOut, data.getFileNamePure(), i);
 				OutputStream outputStream = getOutputStream();
 				handleMethodStartOperation(i);
-				buffer(outputStream);
+				super.buffer(outputStream);
 				handleMethodEndOperation();
 			}
 		}
@@ -240,7 +246,9 @@ public abstract class OutputCore extends StreamCore {
 				handleMethodEndOperation();
 			}
 		}
-		
+		stream.close();// close the inputstream
+		getOutputStream().close();// close the outputstream
+
 	}
 
 }

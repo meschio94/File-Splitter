@@ -2,7 +2,6 @@ package stream.input;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import logic.FSPasswordHash;
 import logic.FileElement;
 
 /**
- * Class specialized for Decrypt and reconstruct a file via {@link #decryptFile}, extends the {@link stream.input.InputCore} class.
+ * Class specialized for Decrypt and reconstruct a file via {@link #deryptFile}, extends the {@link #InputCore} class.
  *	Reconstruct a file with all the encrypted parts
  * @author Meschio
  *
@@ -38,10 +37,10 @@ public class InputDecrypt extends InputCore{
 	private FSPasswordHash crypt;
 
 	/**
-	 * Constructor of InputCrypt, call the super constructor of {@link stream.input.InputCore},
-	 * @param srcPath source output path
-	 * @param data element
-	 * @throws IOException IOException
+	 * Constructor of InputCrypt, call the super constructor of {@link #InputCore},
+	 * @param srcPath
+	 * @param data
+	 * @throws IOException
 	 */
 	public InputDecrypt(String srcPath, FileElement data) throws IOException{
 		super(srcPath,data);
@@ -67,8 +66,7 @@ public class InputDecrypt extends InputCore{
 	 * decryptFile Function for reconstruct the file from its crypted parts
 	 * Will perform the action only if {@link #successfulFlag} is set to true,
 	 * otherwise will update the {@link #data} status to "Error"
-	 * @param password password of the element
-	 * @throws IOException IOException
+	 * @throws IOException
 	 */
 	public void decryptFile(String password) throws Exception {
 		if(isSuccessful()==true){//check all previous operation in stream core
@@ -116,25 +114,6 @@ public class InputDecrypt extends InputCore{
 		//nothing to do for crypt
 	}
 
-	/**
-	 * Method for close the current stream and open the next part
-	 *
-	 * @param index of part
-	 * @throws IOException IOException
-	 */
-	public void openNextFile(int index) throws IOException {
-		stream.close(); // close the header file
 
-		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
-		file = new File(nextFile); // open the part 1
-
-		if ((nextFile == null) || (file.exists() == false)) {
-			setFlagFalse();
-
-		} else {
-			stream = new FileInputStream(file);// open a new stream
-		}
-
-	}
 
 }
