@@ -75,7 +75,6 @@ public class OutputSplit extends OutputCore{
 	 * For OutputSplit close the actual {@link #fileOutputStream}
 	 */
 	protected void handleMethodEndOperation() throws IOException{
-		//nothing to do for splimethod
 		getOutputStream().close();
 	}
 }

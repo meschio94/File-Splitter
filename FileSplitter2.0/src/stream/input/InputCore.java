@@ -1,7 +1,6 @@
 package stream.input;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -48,7 +47,15 @@ public abstract class InputCore extends StreamCore {
 	/******************************************************/
 	/**************** | ABSTRACT METHOD | *****************/
 	/******************************************************/
-
+	
+	/**
+	 * Method for close the current stream and open the next part
+	 *
+	 * @param index of part
+	 * @throws IOException IOException
+	 */
+	abstract public void openNextFile(int index) throws IOException;
+	
 	/**
 	 * Method used by {@link stream.StreamCore.#writeParts} for get the OutputStream, specialized
 	 * in the inherited class
@@ -175,26 +182,6 @@ public abstract class InputCore extends StreamCore {
 	}
 	
 	
-	/**
-	 * Method for close the current stream and open the next part
-	 *
-	 * @param index of part
-	 * @throws IOException IOException
-	 */
-	public void openNextFile(int index) throws IOException {
-		stream.close(); // close the header file
-
-		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
-		file = new File(nextFile); // open the part 1
-
-		if ((nextFile == null) || (file.exists() == false)) {
-			setFlagFalse();
-
-		} else {
-			stream = new FileInputStream(file);// open a new stream
-		}
-
-	}
 
 	/**
 	 * writeParts specialized class of {@link #InputCore} for chop a file with every part of it.<p>
@@ -237,8 +224,8 @@ public abstract class InputCore extends StreamCore {
 			}
 		}
 
-		stream.close();
-		getOutputStream().close();
+		//stream.close();
+		//getOutputStream().close();
 
 
 	}

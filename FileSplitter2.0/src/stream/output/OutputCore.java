@@ -226,7 +226,7 @@ public abstract class OutputCore extends StreamCore {
 				setOutputStream(srcPathOut, data.getFileNamePure(), i);
 				OutputStream outputStream = getOutputStream();
 				handleMethodStartOperation(i);
-				super.buffer(outputStream);
+				buffer(outputStream);
 				handleMethodEndOperation();
 			}
 		}
@@ -240,9 +240,7 @@ public abstract class OutputCore extends StreamCore {
 				handleMethodEndOperation();
 			}
 		}
-		stream.close();// close the inputstream
-		getOutputStream().close();// close the outputstream
-
+		
 	}
 
 }

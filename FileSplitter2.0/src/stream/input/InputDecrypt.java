@@ -2,6 +2,7 @@ package stream.input;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -115,6 +116,25 @@ public class InputDecrypt extends InputCore{
 		//nothing to do for crypt
 	}
 
+	/**
+	 * Method for close the current stream and open the next part
+	 *
+	 * @param index of part
+	 * @throws IOException IOException
+	 */
+	public void openNextFile(int index) throws IOException {
+		stream.close(); // close the header file
 
+		String nextFile = headerInfo.getFileNextPartLocation(index); //get the first part
+		file = new File(nextFile); // open the part 1
+
+		if ((nextFile == null) || (file.exists() == false)) {
+			setFlagFalse();
+
+		} else {
+			stream = new FileInputStream(file);// open a new stream
+		}
+
+	}
 
 }
