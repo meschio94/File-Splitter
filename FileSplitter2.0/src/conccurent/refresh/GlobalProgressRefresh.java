@@ -91,7 +91,7 @@ public class GlobalProgressRefresh extends Task<Void>{
 
 
 	/**
-	 * start the task, loop the list of elements to parse, untile they have all done, updating it every {@link #refresh}
+	 * start the task, loop the list of elements to parse, until they have all done, updating it every {@link #refresh}
 	 * milliseconds
 	 */
 	@Override

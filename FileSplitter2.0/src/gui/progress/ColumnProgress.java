@@ -3,7 +3,7 @@ package gui.progress;
 import javafx.beans.property.DoubleProperty;
 
 /**
- * This class pourpose is to update the progress value binded to the progress column of the {@link logic.FileElement} for the GUI TableView
+ * This class purpose is to update the progress value binded to the progress column of the {@link logic.FileElement} for the GUI TableView
  * @author Meschio
  *
  */
@@ -12,7 +12,7 @@ public class ColumnProgress {
 	/**
 	 * totalWrites Represent the total {@link stream.StreamCore#writeBytes} cycle the element need to do
 	 */
-	private double totalWrites;
+	private long totalWrites;
 
 	/**
 	 * The reference to the observable value of {@link logic.FileElement#progress} for update purpose

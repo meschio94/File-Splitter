@@ -94,7 +94,7 @@ public class OutputCompress extends OutputCore{
 		ZipOutputStream zip = getZipOutputStream();
 		zip.closeEntry();
         zip.finish();
-
+        getOutputStream().close();
 	}
 
 }

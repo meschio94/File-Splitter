@@ -224,9 +224,6 @@ public abstract class InputCore extends StreamCore {
 			}
 		}
 
-		//stream.close();
-		//getOutputStream().close();
-
 
 	}
 

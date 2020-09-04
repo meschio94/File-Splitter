@@ -273,7 +273,7 @@ public abstract class StreamCore {
 	 * @param outputStream outputStream
 	 * @throws IOException
 	 */
-	synchronized protected void buffer(OutputStream outputStream) throws Exception {
+	protected void buffer(OutputStream outputStream) throws Exception {
 
 		if(isSuccessful() == true){
 			long bytesPart = handleBytesPerParts();
@@ -303,7 +303,7 @@ public abstract class StreamCore {
 	 * @param part part to write
 	 * @throws IOException
 	 */
-	synchronized protected void writeBytes(OutputStream outputStream, long part) throws Exception {
+	protected void writeBytes(OutputStream outputStream, long part) throws Exception {
 		if(isSuccessful() == true){
 
 			fileProgress.incColumnBar();//update the progress of the element
